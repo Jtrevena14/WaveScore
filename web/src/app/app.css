@@ -40,6 +40,13 @@ h1 {
   margin-bottom: 16px;
 }
 
+.sound-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
 .controls input[type='range'] {
   flex: 1;
 }

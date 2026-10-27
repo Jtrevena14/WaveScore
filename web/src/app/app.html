@@ -31,6 +31,10 @@
     <button type="button" (click)="togglePlay()" [disabled]="notes().length === 0">
       {{ player.playing() ? 'Pause' : 'Play' }}
     </button>
+    <label class="sound-toggle">
+      <input type="checkbox" [checked]="soundOn()" (change)="onSoundToggle($event)" />
+      Sound
+    </label>
     <input
       type="range"
       min="0"
@@ -51,6 +55,9 @@
           <span class="pitch">{{ note.pitch }}</span>
           <span>start {{ note.start | number: '1.3-3' }} s</span>
           <span>stop {{ note.stop | number: '1.3-3' }} s</span>
+          @if (note.amplitude !== undefined) {
+            <span class="muted">amp {{ note.amplitude | number: '1.2-2' }}</span>
+          }
         </li>
       }
     </ul>

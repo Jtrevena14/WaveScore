@@ -4,6 +4,8 @@ export interface Note {
   midi: number;
   start: number;
   stop: number;
+  /** Basic Pitch confidence, 0-1. Missing in files written before it was added. */
+  amplitude?: number;
 }
 
 /** Checks the parsed JSON shape and returns it as typed notes. Throws with a readable message if invalid. */
@@ -22,6 +24,10 @@ export function parseNotes(data: unknown): Note[] {
     ) {
       throw new Error(`Note ${index} is missing pitch, midi, start or stop`);
     }
-    return { pitch: note.pitch, midi: note.midi, start: note.start, stop: note.stop };
+    const parsed: Note = { pitch: note.pitch, midi: note.midi, start: note.start, stop: note.stop };
+    if (typeof note.amplitude === 'number') {
+      parsed.amplitude = note.amplitude;
+    }
+    return parsed;
   });
 }
