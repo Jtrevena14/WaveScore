@@ -1,0 +1,13 @@
+<div class="keyboard" role="img" aria-label="Piano keyboard">
+  @for (key of whiteKeys; track key.midi) {
+    <div class="key white" [class.active]="isActive(key.midi)" [attr.data-midi]="key.midi"></div>
+  }
+  @for (key of blackKeys; track key.midi) {
+    <div
+      class="key black"
+      [class.active]="isActive(key.midi)"
+      [style.left.%]="key.left"
+      [attr.data-midi]="key.midi"
+    ></div>
+  }
+</div>

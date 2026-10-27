@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  overflow-x: auto;
+}
+
+.keyboard {
+  position: relative;
+  display: flex;
+  height: 180px;
+  min-width: 900px;
+  user-select: none;
+}
+
+.key {
+  box-sizing: border-box;
+}
+
+.white {
+  flex: 0 0 calc(100% / 52);
+  height: 100%;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 0 0 4px 4px;
+}
+
+.white.active {
+  background: #7fb3ff;
+}
+
+.black {
+  position: absolute;
+  top: 0;
+  width: calc(100% / 52 * 0.6);
+  height: 60%;
+  background: #111;
+  border-radius: 0 0 3px 3px;
+  z-index: 1;
+}
+
+.black.active {
+  background: #3a78d6;
+}

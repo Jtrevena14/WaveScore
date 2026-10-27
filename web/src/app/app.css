@@ -1,0 +1,81 @@
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.file-name {
+  color: #555;
+}
+
+.error {
+  color: #b00020;
+}
+
+.now-playing {
+  margin: 12px 0;
+}
+
+.muted {
+  color: #888;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.controls input[type='range'] {
+  flex: 1;
+}
+
+.time {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.note-list li {
+  display: flex;
+  gap: 24px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.note-list li:hover {
+  background: #f3f7ff;
+}
+
+.note-list li.playing {
+  background: #cfe2ff;
+}
+
+.pitch {
+  width: 48px;
+  font-weight: 600;
+}
