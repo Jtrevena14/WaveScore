@@ -82,6 +82,20 @@ h1 {
   background: #cfe2ff;
 }
 
+.note-list li.removed {
+  color: #999;
+}
+
+.note-list li.removed .pitch {
+  text-decoration: line-through;
+}
+
+.reason {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
 .pitch {
   width: 48px;
   font-weight: 600;

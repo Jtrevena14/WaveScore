@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { parseNotes } from './note';
+import { parseNotes, parseNotesFile } from './note';
 
 describe('App', () => {
   beforeEach(async () => {
@@ -43,5 +43,21 @@ describe('parseNotes', () => {
     expect(() => parseNotes([{ pitch: 'C4', midi: 60 }])).toThrowError(
       'Note 0 is missing pitch, midi, start or stop',
     );
+  });
+});
+
+describe('parseNotesFile', () => {
+  const note = { pitch: 'C4', midi: 60, start: 0.5, stop: 0.9, amplitude: 0.4 };
+
+  it('reads the model from the current file shape', () => {
+    expect(parseNotesFile({ model: 'piano', notes: [note] })).toEqual({ model: 'piano', notes: [note] });
+  });
+
+  it('accepts older files that are a bare array, with the model unknown', () => {
+    expect(parseNotesFile([note])).toEqual({ model: null, notes: [note] });
+  });
+
+  it('rejects anything else', () => {
+    expect(() => parseNotesFile({ midi: 60 })).toThrowError('Expected a notes file from transcribe.py --json');
   });
 });

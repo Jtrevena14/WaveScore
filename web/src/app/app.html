@@ -6,7 +6,7 @@
       <input type="file" accept=".json,application/json" (change)="onFileSelected($event)" />
     </label>
     @if (fileName(); as name) {
-      <span class="file-name">{{ name }} ({{ notes().length }} notes)</span>
+      <span class="file-name">{{ name }} ({{ rawNotes().length }} notes)</span>
     }
   </header>
 
@@ -48,15 +48,37 @@
     <span class="time">{{ player.time() | number: '1.2-2' }} / {{ duration() | number: '1.2-2' }} s</span>
   </section>
 
-  @if (notes().length > 0) {
+  @if (rawNotes().length > 0) {
+    <app-filter-panel
+      [settings]="filterSettings()"
+      [defaults]="modelDefaults()"
+      [defaultsLabel]="defaultsLabel()"
+      [enabled]="filtersOn()"
+      [showRemoved]="showRemoved()"
+      [keptCount]="notes().length"
+      [totalCount]="rawNotes().length"
+      [hasAmplitude]="hasAmplitude()"
+      [command]="command()"
+      (settingsChange)="filterSettings.set($event)"
+      (enabledChange)="filtersOn.set($event)"
+      (showRemovedChange)="showRemoved.set($event)"
+    />
+
     <ul class="note-list">
-      @for (note of notes(); track $index) {
-        <li [class.playing]="isPlaying(note)" (click)="player.seek(note.start)">
-          <span class="pitch">{{ note.pitch }}</span>
-          <span>start {{ note.start | number: '1.3-3' }} s</span>
-          <span>stop {{ note.stop | number: '1.3-3' }} s</span>
-          @if (note.amplitude !== undefined) {
-            <span class="muted">amp {{ note.amplitude | number: '1.2-2' }}</span>
+      @for (item of listItems(); track $index) {
+        <li
+          [class.playing]="!item.reason && isPlaying(item.note)"
+          [class.removed]="item.reason"
+          (click)="player.seek(item.note.start)"
+        >
+          <span class="pitch">{{ item.note.pitch }}</span>
+          <span>start {{ item.note.start | number: '1.3-3' }} s</span>
+          <span>stop {{ item.note.stop | number: '1.3-3' }} s</span>
+          @if (item.note.amplitude !== undefined) {
+            <span class="muted">amp {{ item.note.amplitude | number: '1.2-2' }}</span>
+          }
+          @if (item.reason) {
+            <span class="reason">{{ item.reason }}</span>
           }
         </li>
       }

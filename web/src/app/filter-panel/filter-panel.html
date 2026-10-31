@@ -1,0 +1,47 @@
+<section class="filter-panel">
+  <div class="panel-header">
+    <h2>Filters</h2>
+    <label>
+      <input type="checkbox" [checked]="enabled()" (change)="onEnabled($event)" />
+      Filters on
+    </label>
+    <label>
+      <input type="checkbox" [checked]="showRemoved()" (change)="onShowRemoved($event)" />
+      Show removed notes
+    </label>
+    <span class="count">Keeping {{ keptCount() }} of {{ totalCount() }} notes</span>
+  </div>
+
+  <p class="defaults">Defaults for: {{ defaultsLabel() }}</p>
+
+  @if (!hasAmplitude()) {
+    <p class="warning">
+      This file has no amplitude values, so the amplitude filters are off. Re-run transcribe.py to get them.
+    </p>
+  }
+
+  <div class="rows">
+    @for (row of rows; track row.key) {
+      <label class="row" [class.disabled]="!enabled() || (row.needsAmplitude && !hasAmplitude())">
+        <span class="label">{{ row.label }}</span>
+        <input
+          type="range"
+          min="0"
+          [max]="row.max"
+          [step]="row.step"
+          [value]="settings()[row.key]"
+          [disabled]="!enabled() || (row.needsAmplitude && !hasAmplitude())"
+          (input)="onSlider(row.key, $event)"
+        />
+        <span class="value">{{ settings()[row.key] | number: '1.2-3' }}</span>
+        <span class="hint">{{ row.hint }}{{ settings()[row.key] === 0 ? ' (off)' : '' }}</span>
+      </label>
+    }
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="reset()">Reset to defaults</button>
+    <button type="button" (click)="copyCommand()">{{ copied() ? 'Copied!' : 'Copy command' }}</button>
+    <input class="command" type="text" readonly [value]="command()" aria-label="transcribe.py command" />
+  </div>
+</section>

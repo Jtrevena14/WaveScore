@@ -71,7 +71,31 @@ Cost is the effort to build. Payoff is the expected reduction in phantom notes.
 - Which error matters more: a phantom note, or a missed note?
 - Are heavier dependencies acceptable (FluidSynth, ffmpeg, a second model)?
 
-## 5. Related files
+## 5. Status: learned filtering on MAPS (implemented)
+The hand filters (2.3) are now the baseline. The aim is to learn the filter from ground truth instead of tuning it by hand.
+
+**Pieces**
+- `backends.py`: `--model basic-pitch` or `--model piano` (ByteDance piano transcription; checkpoint in `models/piano_note_pedal.pth`). On `2-5-1.mp3` the piano model gives 29 raw notes vs Basic Pitch's 41.
+- `eval/`: MAPS loader, raw-notes cache (`data/cache/`), scoring (mir_eval note P/R/F1 plus exact-chord rate).
+  - Split: train on the software pianos, validate on `StbgTGd2`, test on the real Disklaviers `ENSTDkCl`/`ENSTDkAm`.
+- `eval/tune_filters.py`: random search over the hand-filter settings (2.2/2.3 done automatically).
+- `features.py` + `eval/train_classifier.py`: per-note features. The classifier is logistic regression (prints its weights and bias) or gradient boosting, whichever scores better on validation.
+- `pipeline.py`: `--filter auto` uses `models/note_filter_<model>.joblib` if present, else `models/filter_settings_<model>.json`, else the hand defaults.
+- `chords.py`: groups notes by onset (chained gaps ≤ 120 ms, span ≤ 250 ms) and names chords, rootless jazz voicings included. With `--model piano`, `2-5-1.mp3` reports 6 chords.
+
+**Workflow once MAPS is in `data/MAPS/`**
+```
+python -m eval.evaluate --backend basic-pitch piano --filter none default --split test --limit 20
+python -m eval.tune_filters    --backend piano
+python -m eval.train_classifier --backend piano
+python -m eval.evaluate --backend piano --filter none default tuned learned --split test
+python transcribe.py 2-5-1.mp3 --model piano          # auto picks up the trained filter
+```
+First runs are slow: every MAPS file goes through the model once, and is cached after that. Use `--limit` for quick passes.
+
+**Results table:** _to fill in after the first real MAPS run._
+
+## 6. Related files
 - `transcribe.py`: the script that would change.
 - `PLAN.md`, `PIANO_VISUALIZER.md`: earlier specs.
 - `web/src/app/note.ts`: the note shape the visualizer reads.

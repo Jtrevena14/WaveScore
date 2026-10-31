@@ -1,9 +1,13 @@
 """
 Post-filters for Basic Pitch note events, aimed at removing phantom notes.
 See PREPROCESSING.md section 2.3 for the reasoning behind each filter.
+
+web/src/app/filters.ts is a TypeScript port used for live tuning in the
+visualizer. Keep the two in sync: same settings, defaults and step order.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from typing import Optional
 
 # Semitone offsets of the strongest overtones above a fundamental:
 # octave, octave + fifth, two octaves, two octaves + major third.
@@ -19,6 +23,8 @@ class NoteEvent:
     stop: float
     midi: int
     amplitude: float
+    # Model's onset activation at the note's start (0-1), if the backend provides one.
+    onset_strength: Optional[float] = None
 
     @property
     def duration(self):
@@ -58,12 +64,7 @@ def merge_fragments(notes, gap):
                     (current.amplitude * current.duration + note.amplitude * note.duration) / total
                     if total > 0 else max(current.amplitude, note.amplitude)
                 )
-                current = NoteEvent(
-                    start=current.start,
-                    stop=max(current.stop, note.stop),
-                    midi=current.midi,
-                    amplitude=amplitude,
-                )
+                current = replace(current, stop=max(current.stop, note.stop), amplitude=amplitude)
             else:
                 merged.append(current)
                 current = note
