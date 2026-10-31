@@ -1,0 +1,383 @@
+{
+  "model": "piano",
+  "notes": [
+    {
+      "pitch": "G#4",
+      "midi": 68,
+      "start": 0.107,
+      "stop": 0.51,
+      "amplitude": 0.386
+    },
+    {
+      "pitch": "C3",
+      "midi": 48,
+      "start": 0.107,
+      "stop": 0.512,
+      "amplitude": 0.346
+    },
+    {
+      "pitch": "C4",
+      "midi": 60,
+      "start": 0.108,
+      "stop": 0.514,
+      "amplitude": 0.409
+    },
+    {
+      "pitch": "G#3",
+      "midi": 56,
+      "start": 0.108,
+      "stop": 0.51,
+      "amplitude": 0.386
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 0.111,
+      "stop": 0.513,
+      "amplitude": 0.425
+    },
+    {
+      "pitch": "G#2",
+      "midi": 44,
+      "start": 1.09,
+      "stop": 1.738,
+      "amplitude": 0.449
+    },
+    {
+      "pitch": "D#3",
+      "midi": 51,
+      "start": 1.091,
+      "stop": 1.741,
+      "amplitude": 0.472
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 1.093,
+      "stop": 1.743,
+      "amplitude": 0.425
+    },
+    {
+      "pitch": "A#4",
+      "midi": 70,
+      "start": 1.095,
+      "stop": 1.738,
+      "amplitude": 0.535
+    },
+    {
+      "pitch": "C4",
+      "midi": 60,
+      "start": 1.095,
+      "stop": 1.742,
+      "amplitude": 0.386
+    },
+    {
+      "pitch": "A#3",
+      "midi": 58,
+      "start": 1.097,
+      "stop": 1.738,
+      "amplitude": 0.378
+    },
+    {
+      "pitch": "G#4",
+      "midi": 68,
+      "start": 2.365,
+      "stop": 2.645,
+      "amplitude": 0.504
+    },
+    {
+      "pitch": "G2",
+      "midi": 43,
+      "start": 2.585,
+      "stop": 2.77,
+      "amplitude": 0.339
+    },
+    {
+      "pitch": "F3",
+      "midi": 53,
+      "start": 2.678,
+      "stop": 3.694,
+      "amplitude": 0.331
+    },
+    {
+      "pitch": "B3",
+      "midi": 59,
+      "start": 2.721,
+      "stop": 3.695,
+      "amplitude": 0.449
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 2.784,
+      "stop": 3.695,
+      "amplitude": 0.315
+    },
+    {
+      "pitch": "A#4",
+      "midi": 70,
+      "start": 2.832,
+      "stop": 3.691,
+      "amplitude": 0.52
+    },
+    {
+      "pitch": "F4",
+      "midi": 65,
+      "start": 2.837,
+      "stop": 3.694,
+      "amplitude": 0.315
+    },
+    {
+      "pitch": "D#5",
+      "midi": 75,
+      "start": 3.758,
+      "stop": 4.28,
+      "amplitude": 0.441
+    },
+    {
+      "pitch": "A#3",
+      "midi": 58,
+      "start": 3.761,
+      "stop": 4.31,
+      "amplitude": 0.417
+    },
+    {
+      "pitch": "G4",
+      "midi": 67,
+      "start": 3.761,
+      "stop": 4.298,
+      "amplitude": 0.465
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 3.761,
+      "stop": 4.302,
+      "amplitude": 0.433
+    },
+    {
+      "pitch": "D#3",
+      "midi": 51,
+      "start": 3.772,
+      "stop": 4.301,
+      "amplitude": 0.394
+    },
+    {
+      "pitch": "C3",
+      "midi": 48,
+      "start": 3.773,
+      "stop": 4.303,
+      "amplitude": 0.402
+    },
+    {
+      "pitch": "G#2",
+      "midi": 44,
+      "start": 5.384,
+      "stop": 5.63,
+      "amplitude": 0.488
+    },
+    {
+      "pitch": "D#3",
+      "midi": 51,
+      "start": 5.386,
+      "stop": 5.65,
+      "amplitude": 0.441
+    },
+    {
+      "pitch": "G#3",
+      "midi": 56,
+      "start": 5.387,
+      "stop": 5.645,
+      "amplitude": 0.496
+    },
+    {
+      "pitch": "C3",
+      "midi": 48,
+      "start": 5.388,
+      "stop": 5.67,
+      "amplitude": 0.433
+    },
+    {
+      "pitch": "G5",
+      "midi": 79,
+      "start": 5.714,
+      "stop": 5.8,
+      "amplitude": 0.598
+    },
+    {
+      "pitch": "G3",
+      "midi": 55,
+      "start": 5.721,
+      "stop": 6.116,
+      "amplitude": 0.48
+    },
+    {
+      "pitch": "G4",
+      "midi": 67,
+      "start": 5.721,
+      "stop": 6.09,
+      "amplitude": 0.504
+    },
+    {
+      "pitch": "F2",
+      "midi": 41,
+      "start": 5.723,
+      "stop": 6.112,
+      "amplitude": 0.378
+    },
+    {
+      "pitch": "C3",
+      "midi": 48,
+      "start": 5.724,
+      "stop": 6.115,
+      "amplitude": 0.441
+    },
+    {
+      "pitch": "G#2",
+      "midi": 44,
+      "start": 5.727,
+      "stop": 6.07,
+      "amplitude": 0.409
+    },
+    {
+      "pitch": "C4",
+      "midi": 60,
+      "start": 6.381,
+      "stop": 6.94,
+      "amplitude": 0.52
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 6.387,
+      "stop": 6.87,
+      "amplitude": 0.504
+    },
+    {
+      "pitch": "D#5",
+      "midi": 75,
+      "start": 6.389,
+      "stop": 6.7,
+      "amplitude": 0.535
+    },
+    {
+      "pitch": "A#4",
+      "midi": 70,
+      "start": 6.391,
+      "stop": 6.864,
+      "amplitude": 0.622
+    },
+    {
+      "pitch": "D#3",
+      "midi": 51,
+      "start": 6.392,
+      "stop": 6.865,
+      "amplitude": 0.504
+    },
+    {
+      "pitch": "G#2",
+      "midi": 44,
+      "start": 6.392,
+      "stop": 6.88,
+      "amplitude": 0.512
+    },
+    {
+      "pitch": "A#3",
+      "midi": 58,
+      "start": 6.393,
+      "stop": 6.864,
+      "amplitude": 0.48
+    },
+    {
+      "pitch": "G4",
+      "midi": 67,
+      "start": 6.394,
+      "stop": 6.87,
+      "amplitude": 0.543
+    },
+    {
+      "pitch": "G#4",
+      "midi": 68,
+      "start": 7.741,
+      "stop": 7.953,
+      "amplitude": 0.669
+    },
+    {
+      "pitch": "G2",
+      "midi": 43,
+      "start": 7.978,
+      "stop": 9.06,
+      "amplitude": 0.362
+    },
+    {
+      "pitch": "B3",
+      "midi": 59,
+      "start": 8.078,
+      "stop": 9.06,
+      "amplitude": 0.441
+    },
+    {
+      "pitch": "F4",
+      "midi": 65,
+      "start": 8.096,
+      "stop": 9.026,
+      "amplitude": 0.362
+    },
+    {
+      "pitch": "A#4",
+      "midi": 70,
+      "start": 8.114,
+      "stop": 9.027,
+      "amplitude": 0.472
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 8.115,
+      "stop": 9.05,
+      "amplitude": 0.307
+    },
+    {
+      "pitch": "A#3",
+      "midi": 58,
+      "start": 9.054,
+      "stop": 9.627,
+      "amplitude": 0.488
+    },
+    {
+      "pitch": "G4",
+      "midi": 67,
+      "start": 9.056,
+      "stop": 9.65,
+      "amplitude": 0.528
+    },
+    {
+      "pitch": "D4",
+      "midi": 62,
+      "start": 9.056,
+      "stop": 9.627,
+      "amplitude": 0.559
+    },
+    {
+      "pitch": "D#3",
+      "midi": 51,
+      "start": 9.06,
+      "stop": 9.15,
+      "amplitude": 0.465
+    },
+    {
+      "pitch": "C3",
+      "midi": 48,
+      "start": 9.06,
+      "stop": 9.628,
+      "amplitude": 0.472
+    },
+    {
+      "pitch": "D#4",
+      "midi": 63,
+      "start": 9.064,
+      "stop": 9.13,
+      "amplitude": 0.449
+    }
+  ]
+}

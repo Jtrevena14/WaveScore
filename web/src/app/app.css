@@ -40,6 +40,13 @@ h1 {
   margin-bottom: 16px;
 }
 
+.sound-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
 .controls input[type='range'] {
   flex: 1;
 }
@@ -73,6 +80,20 @@ h1 {
 
 .note-list li.playing {
   background: #cfe2ff;
+}
+
+.note-list li.removed {
+  color: #999;
+}
+
+.note-list li.removed .pitch {
+  text-decoration: line-through;
+}
+
+.reason {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 .pitch {

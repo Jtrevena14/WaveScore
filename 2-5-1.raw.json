@@ -1,0 +1,289 @@
+[
+  {
+    "pitch": "E5",
+    "midi": 76,
+    "start": 0.569,
+    "stop": 1.544,
+    "amplitude": 0.587
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 0.58,
+    "stop": 1.95,
+    "amplitude": 0.607
+  },
+  {
+    "pitch": "D4",
+    "midi": 62,
+    "start": 0.58,
+    "stop": 1.428,
+    "amplitude": 0.449
+  },
+  {
+    "pitch": "D3",
+    "midi": 50,
+    "start": 0.592,
+    "stop": 2.23,
+    "amplitude": 0.481
+  },
+  {
+    "pitch": "A4",
+    "midi": 69,
+    "start": 1.672,
+    "stop": 1.998,
+    "amplitude": 0.356
+  },
+  {
+    "pitch": "A4",
+    "midi": 69,
+    "start": 2.335,
+    "stop": 4.205,
+    "amplitude": 0.674
+  },
+  {
+    "pitch": "A5",
+    "midi": 81,
+    "start": 2.346,
+    "stop": 2.497,
+    "amplitude": 0.413
+  },
+  {
+    "pitch": "E5",
+    "midi": 76,
+    "start": 2.346,
+    "stop": 3.461,
+    "amplitude": 0.549
+  },
+  {
+    "pitch": "G3",
+    "midi": 55,
+    "start": 2.358,
+    "stop": 4.24,
+    "amplitude": 0.581
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 2.37,
+    "stop": 3.542,
+    "amplitude": 0.46
+  },
+  {
+    "pitch": "C2",
+    "midi": 36,
+    "start": 4.298,
+    "stop": 4.496,
+    "amplitude": 0.259
+  },
+  {
+    "pitch": "D5",
+    "midi": 74,
+    "start": 4.31,
+    "stop": 5.482,
+    "amplitude": 0.594
+  },
+  {
+    "pitch": "B4",
+    "midi": 71,
+    "start": 4.31,
+    "stop": 7.423,
+    "amplitude": 0.659
+  },
+  {
+    "pitch": "G4",
+    "midi": 67,
+    "start": 4.31,
+    "stop": 4.612,
+    "amplitude": 0.378
+  },
+  {
+    "pitch": "G3",
+    "midi": 55,
+    "start": 4.31,
+    "stop": 4.449,
+    "amplitude": 0.397
+  },
+  {
+    "pitch": "C3",
+    "midi": 48,
+    "start": 4.31,
+    "stop": 7.063,
+    "amplitude": 0.655
+  },
+  {
+    "pitch": "G2",
+    "midi": 43,
+    "start": 4.31,
+    "stop": 4.496,
+    "amplitude": 0.39
+  },
+  {
+    "pitch": "G4",
+    "midi": 67,
+    "start": 4.763,
+    "stop": 5.401,
+    "amplitude": 0.372
+  },
+  {
+    "pitch": "G4",
+    "midi": 67,
+    "start": 7.179,
+    "stop": 7.388,
+    "amplitude": 0.332
+  },
+  {
+    "pitch": "D4",
+    "midi": 62,
+    "start": 7.527,
+    "stop": 7.783,
+    "amplitude": 0.408
+  },
+  {
+    "pitch": "D3",
+    "midi": 50,
+    "start": 7.527,
+    "stop": 9.293,
+    "amplitude": 0.628
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 7.539,
+    "stop": 8.469,
+    "amplitude": 0.427
+  },
+  {
+    "pitch": "G4",
+    "midi": 67,
+    "start": 7.574,
+    "stop": 8.039,
+    "amplitude": 0.347
+  },
+  {
+    "pitch": "C5",
+    "midi": 72,
+    "start": 7.632,
+    "stop": 9.258,
+    "amplitude": 0.541
+  },
+  {
+    "pitch": "A4",
+    "midi": 69,
+    "start": 7.899,
+    "stop": 8.248,
+    "amplitude": 0.389
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 8.678,
+    "stop": 9.235,
+    "amplitude": 0.41
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 9.247,
+    "stop": 10.2,
+    "amplitude": 0.411
+  },
+  {
+    "pitch": "G3",
+    "midi": 55,
+    "start": 9.282,
+    "stop": 10.897,
+    "amplitude": 0.641
+  },
+  {
+    "pitch": "A4",
+    "midi": 69,
+    "start": 9.293,
+    "stop": 10.455,
+    "amplitude": 0.513
+  },
+  {
+    "pitch": "D3",
+    "midi": 50,
+    "start": 9.293,
+    "stop": 9.444,
+    "amplitude": 0.457
+  },
+  {
+    "pitch": "E5",
+    "midi": 76,
+    "start": 9.398,
+    "stop": 10.154,
+    "amplitude": 0.535
+  },
+  {
+    "pitch": "F4",
+    "midi": 65,
+    "start": 10.339,
+    "stop": 10.78,
+    "amplitude": 0.38
+  },
+  {
+    "pitch": "B5",
+    "midi": 83,
+    "start": 10.931,
+    "stop": 11.489,
+    "amplitude": 0.346
+  },
+  {
+    "pitch": "G5",
+    "midi": 79,
+    "start": 10.931,
+    "stop": 12.953,
+    "amplitude": 0.59
+  },
+  {
+    "pitch": "D5",
+    "midi": 74,
+    "start": 10.931,
+    "stop": 12.175,
+    "amplitude": 0.449
+  },
+  {
+    "pitch": "G3",
+    "midi": 55,
+    "start": 10.931,
+    "stop": 11.966,
+    "amplitude": 0.374
+  },
+  {
+    "pitch": "C3",
+    "midi": 48,
+    "start": 10.931,
+    "stop": 12.953,
+    "amplitude": 0.694
+  },
+  {
+    "pitch": "C4",
+    "midi": 60,
+    "start": 10.943,
+    "stop": 11.489,
+    "amplitude": 0.381
+  },
+  {
+    "pitch": "B5",
+    "midi": 83,
+    "start": 11.489,
+    "stop": 11.732,
+    "amplitude": 0.443
+  },
+  {
+    "pitch": "C4",
+    "midi": 60,
+    "start": 11.489,
+    "stop": 11.92,
+    "amplitude": 0.415
+  },
+  {
+    "pitch": "C4",
+    "midi": 60,
+    "start": 12.105,
+    "stop": 12.93,
+    "amplitude": 0.366
+  }
+]

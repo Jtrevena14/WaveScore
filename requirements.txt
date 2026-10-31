@@ -1,1 +1,6 @@
 basic-pitch
+piano_transcription_inference
+librosa
+scikit-learn
+mir_eval
+joblib
