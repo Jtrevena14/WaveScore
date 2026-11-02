@@ -1,0 +1,8 @@
+# Piano-only training deps for the AWS GPU instance (see AWS_TRAINING.md).
+# torch is not listed: the Deep Learning AMI already has it, built with CUDA.
+piano_transcription_inference
+librosa
+scikit-learn
+mir_eval
+joblib
+pretty_midi
