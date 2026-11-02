@@ -11,7 +11,10 @@ the test split, and saves models/note_filter_<backend>.pt (used by --filter cnn 
 
 import argparse
 import json
+import multiprocessing
+import os
 import random
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -42,22 +45,44 @@ def cached_patches(f, notes, cache_dir):
     return patches
 
 
-def build_split(data, merge_gap, patch_dir):
+def _ensure_patches(job):
+    """Worker: build and cache one file's patches if the cache is missing or stale."""
+    cached_patches(*job)
+
+
+def build_split(data, merge_gap, patch_dir, workers=1):
     """Patches, features, labels, and the number of reference notes (for recall)."""
-    patches, feats, labels, n_reference = [], [], [], 0
-    for i, (f, raw, reference) in enumerate(data, 1):
+    items, feats, labels, n_reference = [], [], [], 0
+    for f, raw, reference in data:
         notes = merge_fragments(raw, merge_gap) if merge_gap > 0 else raw
         n_reference += len(reference)
         if not notes:
             continue
-        if i % 200 == 0:
-            print(f"  patches: {i}/{len(data)} files", flush=True)
-        patches.append(cached_patches(f, notes, patch_dir))
+        items.append((f, notes))
         feats.append(note_features(notes))
         labels.append(correct_labels(notes, reference))
     if not labels:
         return None
-    return np.concatenate(patches), np.vstack(feats), np.concatenate(labels).astype(np.float32), n_reference
+
+    if workers > 1:
+        # CQT is the slow part; build missing patches in parallel ("spawn" so workers don't inherit CUDA).
+        jobs = [(f, notes, patch_dir) for f, notes in items]
+        with ProcessPoolExecutor(workers, mp_context=multiprocessing.get_context("spawn")) as pool:
+            for i, _ in enumerate(pool.map(_ensure_patches, jobs, chunksize=4), 1):
+                if i % 200 == 0:
+                    print(f"  patches: {i}/{len(jobs)} files", flush=True)
+
+    # Fill one preallocated array, so the split is never held twice in memory.
+    total = sum(len(notes) for _f, notes in items)
+    patches = np.empty((total, PITCH_BINS + 2 * PITCH_JITTER, FRAMES + 2 * TIME_JITTER), dtype=np.float16)
+    print(f"  patch array: {total} notes, {patches.nbytes / 1e9:.2f} GB", flush=True)
+    pos = 0
+    for i, (f, notes) in enumerate(items, 1):
+        if workers <= 1 and i % 200 == 0:
+            print(f"  patches: {i}/{len(items)} files", flush=True)
+        patches[pos:pos + len(notes)] = cached_patches(f, notes, patch_dir)
+        pos += len(notes)
+    return patches, np.vstack(feats), np.concatenate(labels).astype(np.float32), n_reference
 
 
 def jitter(batch, rng):
@@ -85,6 +110,8 @@ def main():
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--device", default="auto", help="auto, cpu or cuda")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--workers", type=int, default=os.cpu_count() or 1,
+                        help="Processes for building missing CQT patches (default: CPU count)")
     args = parser.parse_args()
 
     import torch
@@ -96,16 +123,20 @@ def main():
     patch_dir = Path(args.patch_cache or Path(args.maps).resolve().parent / "MAPS_cache" / "patches") / args.backend
 
     merge_gap = learned_merge_gap(args.backend)
-    splits = {}
-    for split in ("train", "val", "test"):
+    def load_split(split):
         files = find_files(args.maps, args.subset, split, args.limit, scheme=args.scheme)
         print(f"{split}: {len(files)} files", flush=True)
-        splits[split] = build_split(load_dataset(files, args.backend, args.cache), merge_gap, patch_dir) if files else None
+        if not files:
+            return None
+        return build_split(load_dataset(files, args.backend, args.cache), merge_gap, patch_dir, args.workers)
 
-    if splits["train"] is None or splits["val"] is None:
+    # The test split is loaded after training, once the training patches are freed.
+    train, val = load_split("train"), load_split("val")
+    if train is None or val is None:
         raise SystemExit(f"Need both training and validation files under split scheme {args.scheme}")
-    p_train, x_train, y_train, _ = splits["train"]
-    p_val, x_val, y_val, n_val = splits["val"]
+    p_train, x_train, y_train, _ = train
+    p_val, x_val, y_val, n_val = val
+    del train, val
     p_val = centre(p_val)
     print(f"\nTraining notes: {len(y_train)} ({y_train.mean():.1%} real); validation notes: {len(y_val)}")
     print(f"No filter on validation: F1 {f1_at(np.ones(len(y_val)), y_val, n_val, 0.5)[0]:.3f}")
@@ -155,9 +186,11 @@ def main():
     model.load_state_dict(state)
     print(f"\nBest: epoch {epoch}, val F1 {val_f1:.3f} at threshold {threshold:.2f}")
 
+    del p_train, p_val
     report = {}
-    if splits["test"] is not None:
-        p_test, x_test, y_test, n_test = splits["test"]
+    test = load_split("test")
+    if test is not None:
+        p_test, x_test, y_test, n_test = test
         base = f1_at(np.ones(len(y_test)), y_test, n_test, 0.5)[0]
         f1, p, r = f1_at(score_notes(model, centre(p_test), x_test, mean, std, device), y_test, n_test, threshold)
         report["test_f1"] = f1
